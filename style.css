@@ -109,6 +109,10 @@ body {
   clip-path: polygon(0px 0px, 10px 0px, 40px 100%, 30px 100%);
 }
 
+#links span.title {
+  padding-left: 7px;
+}
+
 /*
  * Responsive queries
  */
@@ -143,5 +147,11 @@ body {
     grid-column-end: 4;
     grid-row-start: 2;
     grid-row-end: 3;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  #links span.title { 
+    display: none;
   }
 }
