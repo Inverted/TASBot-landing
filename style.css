@@ -6,43 +6,72 @@
 html,
 body {
   font-family: Arial, Helvetica, sans-serif;
-  overflow-x: hidden;
   font-size: 18px;
 }
 
 html {
-  background: linear-gradient(135deg, rgb(255, 255, 255), rgb(0, 0, 0));
   height: 100%;
 }
 
 body {
   height: 100%;
-  background: linear-gradient(225deg, rgba(0, 0, 100, 0.7), rgba(0, 0, 255, 0.7));
+  background-color: #5959a6;
+  background-repeat: no-repeat;
+  background-size: 100%;
   display: grid;
   grid-template-columns: repeat(5, 20%);
-  grid-template-rows: 100px repeat(7, 77px) auto;
+  grid-auto-rows: minmax(min-content, max-content);
 }
 
-#tasbot {
+body:before {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 0;
+
+  display: block;
+  background-image: url("img/tasbot.png");
+  background-image: url("img/tasbot.svg");
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: -20% 0%;
+  width: 100%;
   height: 100%;
-  transform: translate(-10%, 2%);
-  pointer-events: none;
-  /* position: absolute; */
-  grid-column-start: 1;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 8;
-  z-index: 2;
+
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -o-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: blur(10px);
 }
 
-#tasbot::selection {
-  background: none;
+#video {
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#video div {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0px;
+}
+
+#video iframe {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
 }
 
 #logo {
+  display: block;
   height: 5em;
-  grid-column-start: 2;
-  grid-column-end: 5;
+  grid-column-start: 3;
+  grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 2;
   padding: 1em;
@@ -51,53 +80,78 @@ body {
   justify-self: center;
   z-index: 3;
 }
-
 #about {
   z-index: 1;
   grid-column-start: 1;
   grid-column-end: 6;
   grid-row-start: 9;
   grid-row-end: 10;
-  overflow-y: auto;
+  margin-top: 1em;
 }
-
-#about p {
+#about a {
+  color: rgb(177, 163, 255);
+}
+#about > * {
   color: #fff;
   line-height: 1.5em;
   background: rgba(35, 35, 35, 0.6);
   padding: 1em;
   box-sizing: border-box;
+  margin: 1em;
 }
 
+#about table {
+  font-size: 0.8em;
+  border-collapse: collapse;
+}
+#about table,
+#about table th,
+#about table td {
+  text-align: left;
+  padding: 6px 4px;
+  border: 1px solid #fff;
+}
+#tasbot {
+  grid-column-start: 1;
+  grid-column-end: 6;
+  width: 4vw;
+  justify-self: center;
+}
 #links {
-  list-style: none;
-  z-index: 3;
-  position: absolute;
-  right: 0;
-  top: 100px;
+  overflow-x: hidden;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 5;
+  grid-column-end: 6;
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: repeat(7, calc(1 / 7 * 100%));
 }
-
-#links li a {
+.link {
   display: block;
   color: white;
   text-decoration: none;
   background: rgba(35, 35, 35, 0.6);
-  font-size: 48px;
-  padding: 10px 100px 10px 70px;
-  transform: translateX(60px);
+  font-size: 2.5vw;
+  padding: 10px 80px 10px 40px;
+  transform: translateX(30px);
   border: 1px solid #333;
   border-left: 0;
   border-right: 0;
   transition: transform 0.2s;
   clip-path: polygon(0px 0px, 100% 0px, 100% 100%, 30px 100%);
   white-space: nowrap;
+  width: 100%;
+  grid-column-start: 1;
+  grid-column-end: 6;
+  overflow-x: hidden;
 }
 
-#links li a:hover {
+.link:hover {
   transform: translateX(0px);
 }
 
-#links li a::before {
+.link::before {
   content: " ";
   position: absolute;
   left: 0;
@@ -108,9 +162,13 @@ body {
   background: #fff;
   clip-path: polygon(0px 0px, 10px 0px, 40px 100%, 30px 100%);
 }
-
-#links span.title {
+.link i {
+  vertical-align: middle;
+}
+.link span.title {
   padding-left: 7px;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 /*
@@ -124,17 +182,26 @@ body {
     grid-row-start: 1;
     grid-row-end: 2;
   }
+  .link {
+    font-size: 2vw;
+  }
+  #video {
+    grid-column-start: 1;
+    padding-left: 2em;
+  }
 }
 
 @media only screen and (max-width: 768px) {
-
-  #links li a {
-    transform: translateX(280px);
+  .link {
+    font-size: 2vw;
+    transform: translateX(70px);
   }
-  #links li a span.title {
+
+  .link span.title {
     visibility: hidden;
   }
-  #links li a:hover span.title {
+
+  .link:hover span.title {
     visibility: visible;
   }
 }
@@ -142,26 +209,23 @@ body {
 @media only screen and (max-width: 600px) {
   #logo {
     grid-column-start: 1;
-    grid-column-end: 4;
+    grid-column-end: 6;
     grid-row-start: 1;
     grid-row-end: 2;
     width: 80%;
   }
-
-  #tasbot {
-    grid-row-end: 6;
-  }
-
   #about {
     grid-row-start: 9;
   }
-
-  #links {
-    grid-column-start: 1;
-    grid-column-end: 4;
+  #video {
+    padding-left: 0;
+  }
+  .link {
+    font-size: 2vw;
+    transform: translateX(30px);
+  }
+  /* #links {
     grid-row-start: 2;
     grid-row-end: 3;
-  }
+  } */
 }
-
-
