@@ -33,9 +33,9 @@ body:before {
   display: block;
   background-image: url("img/tasbot.png");
   background-image: url("img/tasbot.svg");
-  background-size: 40%;
+  background-size: 60%;
   background-repeat: no-repeat;
-  background-position: 0% 0%;
+  background-position: -20% 0%;
   width: 100%;
   height: 100%;
 
@@ -51,7 +51,6 @@ body:before {
   grid-column-end: 5;
   grid-row-start: 2;
   grid-row-end: 3;
-  padding-left: 20px;
 }
 
 #video div {
@@ -85,69 +84,74 @@ body:before {
   z-index: 1;
   grid-column-start: 1;
   grid-column-end: 6;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  grid-row-start: 9;
+  grid-row-end: 10;
   margin-top: 1em;
 }
-
-#about p {
+#about a {
+  color: rgb(177, 163, 255);
+}
+#about > * {
   color: #fff;
   line-height: 1.5em;
   background: rgba(35, 35, 35, 0.6);
   padding: 1em;
   box-sizing: border-box;
+  margin: 1em;
+}
+
+#about table {
+  font-size: 0.8em;
+  border-collapse: collapse;
+}
+#about table,
+#about table th,
+#about table td {
+  text-align: left;
+  padding: 6px 4px;
+  border: 1px solid #fff;
 }
 #tasbot {
+  grid-column-start: 1;
+  grid-column-end: 6;
+  width: 4vw;
+  justify-self: center;
+}
+#links {
+  overflow-x: hidden;
+  grid-row-start: 2;
+  grid-row-end: 3;
   grid-column-start: 5;
   grid-column-end: 6;
-  grid-row-start: 1;
-  grid-row-end: 2;
-  width: 4em;
-  padding-top: 1em;
-  justify-self: right;
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: repeat(7, calc(1 / 7 * 100%));
 }
-/* #links::before {
-  content: "";
-  width: 4em;
-  height: 4em;
-  display: block;
-  position: absolute;
-  background-image: url("img/tasbot.svg");
-  background-size: cover;
-
-  top: -10px;
-  left: 0;
-} */
-#links {
-  list-style: none;
-  z-index: 3;
-  position: absolute;
-  right: 0;
-  top: 100px;
-  overflow-x: hidden;
-}
-
-#links li a {
+.link {
   display: block;
   color: white;
   text-decoration: none;
   background: rgba(35, 35, 35, 0.6);
   font-size: 2.5vw;
-  padding: 10px 80px 10px 50px;
-  transform: translateX(60px);
+  padding: 10px 80px 10px 40px;
+  transform: translateX(30px);
   border: 1px solid #333;
   border-left: 0;
   border-right: 0;
   transition: transform 0.2s;
   clip-path: polygon(0px 0px, 100% 0px, 100% 100%, 30px 100%);
   white-space: nowrap;
+  width: 100%;
+  grid-column-start: 1;
+  grid-column-end: 6;
+  overflow-x: hidden;
 }
 
-#links li a:hover {
+.link:hover {
   transform: translateX(0px);
 }
 
-#links li a::before {
+.link::before {
   content: " ";
   position: absolute;
   left: 0;
@@ -158,9 +162,13 @@ body:before {
   background: #fff;
   clip-path: polygon(0px 0px, 10px 0px, 40px 100%, 30px 100%);
 }
-
-#links span.title {
+.link i {
+  vertical-align: middle;
+}
+.link span.title {
   padding-left: 7px;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 /*
@@ -174,19 +182,26 @@ body:before {
     grid-row-start: 1;
     grid-row-end: 2;
   }
+  .link {
+    font-size: 2vw;
+  }
+  #video {
+    grid-column-start: 1;
+    padding-left: 2em;
+  }
 }
 
 @media only screen and (max-width: 768px) {
-  #links li a {
-    font-size: 48px;
-    transform: translateX(260px);
+  .link {
+    font-size: 2vw;
+    transform: translateX(70px);
   }
 
-  #links li a span.title {
+  .link span.title {
     visibility: hidden;
   }
 
-  #links li a:hover span.title {
+  .link:hover span.title {
     visibility: visible;
   }
 }
@@ -194,7 +209,7 @@ body:before {
 @media only screen and (max-width: 600px) {
   #logo {
     grid-column-start: 1;
-    grid-column-end: 4;
+    grid-column-end: 6;
     grid-row-start: 1;
     grid-row-end: 2;
     width: 80%;
@@ -202,11 +217,15 @@ body:before {
   #about {
     grid-row-start: 9;
   }
-
-  #links {
-    grid-column-start: 1;
-    grid-column-end: 4;
+  #video {
+    padding-left: 0;
+  }
+  .link {
+    font-size: 2vw;
+    transform: translateX(30px);
+  }
+  /* #links {
     grid-row-start: 2;
     grid-row-end: 3;
-  }
+  } */
 }
